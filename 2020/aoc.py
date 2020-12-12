@@ -58,6 +58,7 @@ def ImportInput( filename, removeLineBreaks = False ):
     # as an input structure
     inputs = ParseInputs(textInput)
     print( 'Num Inputs: ' + str(len(inputs)) )
+    print()
 
     # if Inputs contain multiple lines, join them to a single line
     if removeLineBreaks:
