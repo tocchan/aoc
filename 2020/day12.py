@@ -21,8 +21,10 @@ for idx, line in enumerate(input):
     # print( str(dirs[idx]) )
 
 def Turn( dx, dy, dir ): 
+    # could do a rotation matrix here, but...
+    # A: don't know matrices in python and don't want to waste time looking it up
+    # B: it is always multiples of 90, so there is only four cases; 
     turns = int(dir / 90)
-    d = [dx, dy]
     while (turns >= 4): 
         turns -= 4
     while (turns < 0): 
@@ -79,8 +81,8 @@ def Part02():
     wx = 10
     wy = 1
 
-    # so if i rotate the ship, I rotate the waypoint.
-    # ship's direction doesn't actually matter - isn't used for anyting
+    # so if I rotate the ship, I rotate the waypoint.
+    # ship's direction doesn't actually matter - isn't used for anything
 
     for dir in dirs: 
         com = dir[0]
@@ -123,3 +125,5 @@ Part02()
 print( 'Part02 took: {:.4f}ms'.format( (time.time() - part02Time) * 1000.0 ) )
 
 print( '\nTotal time: {:.4f}ms'.format( (time.time() - progStart) * 1000.0 ) )
+
+# in hindsight, Part01 and Part02 are exactly the same solution
