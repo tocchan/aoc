@@ -11,25 +11,17 @@ inputStr = '18,8,0,5,4,1,20'
 input = [int(v) for v in inputStr.split(',')]
 print( str(input) )
 
-def GetLastIndex( list, item ): 
-    cnt = len(list)
-    idx = cnt - 1
-    while (idx >= 0): 
-        idx -= 1
-        if (list[idx] == item): 
-            return idx 
-
-    return -1 
+start = time.time()
 
 total = 30000000
-seen = dict()
+seen = [-1] * total
 for i in range(len(input) - 1): 
     seen[input[i]] = i 
 
 lastInput = input[-1]
 for i in range(len(input), total): 
     newVal = 0
-    if lastInput in seen: 
+    if seen[lastInput] >= 0:
         lastIdx = seen[lastInput]
         newVal = i - lastIdx - 1
     else: 
@@ -42,3 +34,4 @@ for i in range(len(input), total):
         print( 'step ' + str(i) )
 
 print( lastInput )
+print( 'Part02 took {:.4f}s'.format( (time.time() - start) ) )
