@@ -71,6 +71,7 @@ def add_invalids( values, cats ):
 
     return sum 
 
+
 def part01( cats, nearby ):
     sum = 0
     for values in nearby: 
@@ -79,13 +80,21 @@ def part01( cats, nearby ):
     print( 'part01 -> ' + str(sum) )
 # end part01
 
+
+def is_valid( values, cats ):
+    for value in values: 
+        if not in_any( value, cats ): 
+            return False 
+    return True 
+
+
 def get_valid( nearby, cats ):
     ret = []
     for values in nearby: 
-        check = add_invalids( values, cats )
-        if (check == 0): 
+        if is_valid( values, cats ): 
             ret.append( values )
     return ret
+
 
 def row_works( cat, row, tickets ): 
     for ticket in tickets: 
