@@ -5,6 +5,7 @@ import time
 from copy import deepcopy 
 
 import aoc
+from utils import time_func
 
 
 # config
@@ -72,6 +73,7 @@ def add_invalids( values, cats ):
     return sum 
 
 
+@ time_func
 def part01( cats, nearby ):
     sum = 0
     for values in nearby: 
@@ -130,6 +132,7 @@ def pick_rows( rows ):
                 remove_rest( rows, row[0] )
 
 
+@time_func
 def part02( cats, nearby ):
     valid = get_valid( nearby, cats )
     print( '{} -> {} sets'.format( len(nearby), len(valid) ) )
@@ -150,7 +153,7 @@ def part02( cats, nearby ):
     prod = 1
     for idx, cat in enumerate(cats): 
         row = validRows[idx][0]
-        print( '{} is row {}'.format( cat[0], row ) )
+        # print( '{} is row {}'.format( cat[0], row ) )
         if 'departure' in cat[0]: 
             prod *= myValues[row]
 
@@ -161,14 +164,6 @@ def part02( cats, nearby ):
 # end part02
 
 
-part01_time = time.time()
 part01( categories, nearbyValues )
-part02_time = time.time()
 part02( categories, nearbyValues )
-end_time = time.time()
 
-dur01 = part02_time - part01_time
-dur02 = end_time - part02_time
-
-print('part01 took {:.2f}ms'.format(dur01 * 1000.0))
-print('part02 took {:.2f}ms'.format(dur02 * 1000.0))
