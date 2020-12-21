@@ -30,10 +30,11 @@ for input_set in input_sets:
 input_count = len(foods)
 
 # implementation
+allergen_map = defaultdict(set)
+
 @time_func
 def part01():
     # so, what we're going to do is create 'sets' of foods that share lists
-    allergen_map = defaultdict(set)
     total_food_set = set()
 
     for i in range(input_count):
@@ -62,9 +63,39 @@ def part01():
 # end part01
 
 
+def find_known_mapping(mapping):
+    for allergen in mapping:
+        food_set = mapping[allergen]
+        if len(food_set) == 1:
+            return allergen, next(iter(food_set))
+
+    return '', ''
+
+
 @time_func
 def part02():
-    pass
+    allergy_to_food = []
+
+    while len(allergen_map) > 0:
+        allergen, food = find_known_mapping(allergen_map)
+        del allergen_map[allergen]
+
+        allergy_to_food.append(f'{allergen},{food}')
+
+        # remove from remaining sets
+        for allergen in allergen_map:
+            food_set = allergen_map[allergen]
+            if food in food_set:
+                food_set.remove(food)
+
+    allergy_to_food.sort()
+    food_csv = []
+    for item in allergy_to_food:
+        food_csv.append(item.split(',')[1])
+
+    ans = ','.join(food_csv)
+    print(f'part02 answer: {ans}')
+
 # end part02
 
 
