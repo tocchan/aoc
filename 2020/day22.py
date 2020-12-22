@@ -9,11 +9,11 @@ import aoc
 from utils import time_func
 
 # config
-INPUT_FILE = 'day22.input.txt';
+INPUT_FILE = 'day22.input.txt'
 
 
 # read input
-file_text = ""
+file_text = str()
 with open(INPUT_FILE, 'r') as input_file:
     file_text = input_file.read()
 
@@ -62,7 +62,7 @@ def part01():
     while result < 0:
         result = play_turn(deck0, deck1)
 
-    ans = 0
+    ans = int()
     if result == 0:
         ans = calculate_score(deck0)
     else:
@@ -73,7 +73,7 @@ def part01():
 
 
 def get_key(deck0, deck1):
-    check = ','.join([chr(32 + c) for c in deck0]) + ' ' + ''.join([chr(32 + c) for c in deck1])
+    check = ''.join([chr(32 + c) for c in deck0]) + ' ' + ''.join([chr(32 + c) for c in deck1])
     return check
 
 
@@ -86,15 +86,15 @@ def play_round(deck0, deck1):
         return all_games[game_key]
     opposite_key = get_key(deck1, deck0)
 
-
     seen_configs = set()
     while (len(deck0) > 0) and (len(deck1) > 0):
         # has this configuration been seen
         check = get_key(deck0, deck1)
         if check in seen_configs:
             # player 1 wins
-            deck0.append(deck0.popleft())
-            deck0.append(deck1.popleft())
+            return 0
+            # deck0.append(deck0.popleft())
+            # deck0.append(deck1.popleft())
         else:
             seen_configs.add(check)
 
@@ -137,7 +137,7 @@ def part02():
 
     result = play_round(deck0, deck1)
 
-    ans = 0
+    ans = int()
     if result == 0:
         ans = calculate_score(deck0)
     else:
@@ -150,4 +150,3 @@ def part02():
 # run the parts
 # part01()
 part02()
-
