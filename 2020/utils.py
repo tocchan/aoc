@@ -16,11 +16,11 @@ def time_func(func):
 
         # display the data
         func_name = func.__name__
-        display = f"{func_name} took: {dur:.4f} seconds"
+        display = f"{func_name} took: {dur:.4f}s"
         if dur < .001:
-            display = f"{func_name} took: {dur * 1000000.0:.4f} nanoseconds"
+            display = f"{func_name} took: {dur * 1000000.0:.4f}us"
         elif dur < .5:
-            display = f"{func_name} took: {dur * 1000.0:.4f} milliseconds"
+            display = f"{func_name} took: {dur * 1000.0:.4f}ms"
         print(display)
 
         # return the result of the function call
