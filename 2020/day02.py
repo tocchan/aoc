@@ -16,6 +16,13 @@ for textInput in textInputs:
     match = re.match( r'(\d+)-(\d+) (\w+): (\w+)$', textInput)
     groups.append( match.groups() )
 
+def CountChar(s, sc): 
+    count = 0
+    for c in s: 
+        if c == sc: 
+            count += 1
+    
+    return count
 
 def IsValid(group):
     min = int(group[0]) - 1
@@ -28,7 +35,6 @@ def IsValid(group):
         
     aMatch = (pattern[min] == searchChar)
     bMatch = (pattern[max] == searchChar)
-
     return (aMatch != bMatch)
 
 # Check it!

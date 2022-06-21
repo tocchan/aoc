@@ -14,7 +14,16 @@ for textInput in textInputs:
     if textInput.isnumeric(): 
         numInputs.append( int(textInput) )
 
-def FindSum( inputs, searchSum ):
+def FindSumA( inputs, searchSum ):
+    for i in range(0, len(numInputs)): 
+        for j in range(i + 1, len(numInputs)): 
+            sum = numInputs[i] + numInputs[j]
+            if sum == searchSum: 
+                product = numInputs[i] * numInputs[j]
+                print ('Product: ' + str(product))
+                return
+
+def FindSumB( inputs, searchSum ):
     for i in range(0, len(numInputs)): 
         for j in range(i + 1, len(numInputs)): 
             for k in range(j + 1, len(numInputs)):
@@ -24,7 +33,9 @@ def FindSum( inputs, searchSum ):
                     print ('Product: ' + str(product))
                     return
             
-FindSum( numInputs, 2020 )
+FindSumA( numInputs, 2020 )
+FindSumB( numInputs, 2020 )
+
 
 
 
